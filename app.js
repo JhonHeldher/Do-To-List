@@ -131,25 +131,28 @@ function editItem(data) {
   document.getElementById('edit-input').value = values[index].name;
   document.getElementById('popup').style.display = 'flex';
 
-
+  // Salva a edição quando o botão Salvar é clicado
   document.getElementById('edit-save').addEventListener('click', function() {
     let newTaskName = document.getElementById('edit-input').value;
     values[index].name = newTaskName;
     localStorage.setItem(localStorageKey, JSON.stringify(values));
-    showValues();
     closePopup();
-  });
+    showValues()
+  }
+ 
+  );
 
   // Fecha o pop-up quando o botão Cancelar é clicado
   document.getElementById('edit-cancel').addEventListener('click', function() {
     closePopup();
   });
 
-
+  // Função para fechar o pop-up
   function closePopup() {
     document.getElementById('popup').style.display = 'none';
   }
 }
+
 // ==========================================================================================================================================
 function removeItem(data) {
   let values = JSON.parse(localStorage.getItem(localStorageKey) || "[]");
