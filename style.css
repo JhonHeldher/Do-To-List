@@ -1,154 +1,393 @@
 /* Modo claro */
-
+:root {
+    --white: #c8c8c4;
+    --white2: #b9b9b6;
+    --black: #55555589;
+    --black2: #333;
+    --black3: #6a6a6a;
+}
+* {
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
 body{
-    background-color: #c8c8c4;
-    color: black;
+    background-color: var(--white);
+    color: var(--black2);
+    flex-direction: column;
+    font-family: sans-serif;
+}
+
+#header{
+    display: flex;
+    flex-direction: row;
+    width: min(100%-30px, 840px);
+    margin-inline: auto;
+    height: 45px;
+    padding: 0.7rem;
+    justify-content: space-between;
+}
+h3{
+    margin-bottom: 0;
+}
+.content{
+    width: min(100%-30px, 840px);
+    height: 20vh;
+    margin-inline: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: sans-serif;
 }
-h1 {
-    color: rgb(34, 34, 34);
-    margin-right: 14rem;
-    font-size: 2.5rem;
-}
-.content--add-item{
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-wrap: wrap;
+h1{
+    font-size: 45px;
+    margin-bottom: 5px;
 }
 
-.content--boby{
-    margin-top: 3rem;
+ .content--add-item{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
-/* Digite e o button */
-#input-new-task,
-#btn-new-task{
+.field{
+    position: relative;
+    height: 52px;
+    width: 160px;
+    max-width: 220px;
+    overflow: hidden;
+    margin-top: -30px;
+}
+.field input{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    line-height: 52px;
+    outline: 0;
+    background-color: inherit;
+    padding-top: 25px;
     border: none;
-    font-size: 1rem;
-    outline: none;
-    padding: 1rem;
+    box-sizing: border-box;
 }
-#input-new-task{
-    background-color: #a3a0a0;
-    color: #1b1b1b;
-    width: 20rem;
-    border-radius: 1rem;
-}
-/* Linha embaixo do input */
-.underline{
-    margin-top: 4rem;
-    margin-left: 0.5rem;
+
+.field .label-wrapper{
     position: absolute;
+    height: 100%;
+    width: 100%;
+    bottom: 0;
+    background-color: inherit;
+    left: 0;
+    pointer-events: none;
+    border-bottom: 1px solid rgb(0, 0, 0);
 }
-.underline::before {
-    content: '';
+.field .label-wrapper::after{
+    content: "";
     position: absolute;
-    height: 6px;
-    width: 21rem;
-    border-radius: 6px;
-    background: rgba(0, 0, 0, 0.2);
+    height: 100%;
+    width: 100%;
+    border-bottom: 3px solid #5067ff;
+    left: 0;
+    bottom: -1px;
+    transform: translateX(-100%);
+    transition: transform 0.2s ease;
 }
-.underline::after {
-    content: '';
+.field .label-text{
     position: absolute;
-    height: 6px;
-    width: 21rem;
-    background: linear-gradient(45deg,#010e7a,#5162fd);
-    border-radius: 6px;
-    transform: scaleX(0);
-    transition: all .3s ease-in-out;
-    transform-origin: left;
+    bottom: 5px;
+    left: 0px;
+    transition: all 0.2s ease;
 }
-input:focus ~ .underline::after {
-    transform: scaleX(1);
+.field input:focus + .label-wrapper .label-text,
+.field input:valid + .label-wrapper .label-text{
+    font-size: 12px;
+    color: #5067ff;
+    transform: translateY(-150%);
 }
-/* button adicionar nova task */
+.field input:focus + .label-wrapper::after,
+.field input:valid + .label-wrapper::after{
+    transform: translateX(0%);
+}
+
+/* button adicionar nova task*/
 #btn-new-task{
-    background-color: #333;
+    background-color: var(--black2);
     color: #ffffff;
     border-radius: 50%;
-    height: 50px;
-    width: 50px;
+    height: 32px;
+    width: 32px;
+    margin-top: -10px;
+    margin-left: 2.56px;
     cursor: pointer;
-    transition: 300ms;
+    transition: 200ms;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 #btn-new-task:hover{
     background-color: rgb(64, 64, 251);
+    transform: scale(115%);
 }
-/* task embaixo */
+
+/* ========================================================================== */
+.content--boby{
+    height: 52vh;
+    display: flex;
+    justify-content: center;
+}
+.content--boby--add-item{
+    margin-top: 1rem;
+    border-radius: 1rem;
+    width: min(100vw, 840px);
+    background-color: var(--white2);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+.content--boby--add-item:last-child{
+    gap: 10px;
+}
+
+/* ========================================================================== */
+/* Search */
+
+#search-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: min(100vw, 840px);
+    height: 30px;
+    gap: 0.3rem;
+}
+
+
+#search-input{
+    border-radius: 8px;
+    outline: 0;
+    background-color: var(--white);
+    padding-left: 0.3rem;
+    border: none;
+    box-sizing: border-box;
+}
+
+#search-input::placeholder {
+    color: var(--black2);
+}
+
+#erase-button{
+    border-radius: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: var(--white);
+}
+#erase-button:hover{
+    transform: scale(110%);
+}
+.clicado {
+    background-color: red;
+    font-size: 16px;
+    /* Outras propriedades de estilo desejadas */
+}
+  
+/* ========================================================================== */
+#cbi{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    overflow-y: auto;
+    gap: 1rem;
+}
+#ctl,#ctdl{
+    /* color: #bbbbbb; */
+    color: #1b1b1b;
+}
+
+#ctdl::-webkit-scrollbar {
+    width: 12px; 
+    background-color: inherit;
+}
+
+#ctdl::-webkit-scrollbar-thumb {
+    background-color: #999; 
+    cursor: pointer;
+    border-radius: 5px; 
+}
+#ctdl::-webkit-scrollbar-thumb:hover{
+    background-color: #818181; }
+/* ========================================================================== */
+
+#ctl{
+    max-height: 100%;
+    display: flex;
+    align-items: center;
+    background-color: var(--black2);
+    color: var(--white2);
+    width: 4rem;
+    border-radius: 0 16px 16px 0;
+}
+/* ========================================================================== */
+/* all & done & trash */
+#filter{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    justify-content: space-between;
+    gap: 2.5rem;
+}
+#filter option{
+    cursor: pointer;
+}
+
+#ctdl{
+    width: 100%;
+    overflow-y: auto;
+} 
+/* ========================================================================== */
+
+/* task completa*/
 
 #to-do-list{
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 0.5rem;
     padding: 0;
 }
 #to-do-list li{
     list-style-type: none;
+    height: 41px;
+    background-color: var(--white);
+    color: var(--black2);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.5rem;
     font-size: 1rem;
     text-transform: capitalize;
-    display: flex;
-    justify-content: left;
+    margin-right: 0.3rem;
+
 }
-#to-do-list li .date{
-    position: absolute;
-    font-size: 1rem;
-    display: flex;
-    justify-content: right;
+/* ========================================================================== */
+
+/* checkbox & text task */
+#btn-star{
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
-/* button para editar a task */
-#to-do-list li button{
+/* ===================================== */
+/* checbox */
+#ch{
+    width: 20px;
+    height: 20px;
     cursor: pointer;
-    display: flex;
-    position: absolute;
-    margin-left: 24rem;
+    margin-right: 0.6rem;
+    margin-left: 0.3rem;
 }
-#to-do-list li button:first-child{
-    display: flex;
+#check{
     position: absolute;
-    margin-left: 21rem;
+    transform: scale(0);
+}
+#check:checked ~ .checkbox{
+    transform: rotate(45deg);
+    width: 5px;
+    margin-left: 10px;
+    margin-top:2px;
+    border-color: #24c72fd7;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-radius: 0;
+    
 }
 
+.checkbox{
+    display: block;
+    width: inherit;
+    height: inherit;
+    margin-top:4px;
+    border: 2px solid var(--black2);
+    border-radius: 6px;
+    transition: all 0.375s;
+}
+.checkbox:hover{
+    transform: scale(110%);
+}
+
+/* ===================================== */
+/* editar e excluir*/
+#btn-fim{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.4rem;
+    align-items: center;
+}
+/* ===================================== */
+/* butoes das task*/
 #btn-edit{
-    color: #bbbbbb;
-    background-color: #8c8c8c;
-    padding: 0.5rem;
+    color: var(--black2);
+    background-color: inherit;
     outline: none;
+    width: 25px;
+    height: 25px;
     border: none;
-    color: #ffffff;
-    border-radius: 0.5rem;
+    border-radius: 0.3rem;
+
 }
 #btn-edit:hover{
-    background-color: rgb(169, 131, 5);
+    color: rgb(199, 153, 2);
+    transform: scale(115%);
 }
-
+/* =================== */
 #btn-excluir{
-    color: #bbbbbb;
-    background-color: #8c8c8c;
-    padding: 0.5rem;
+    color: var(--black2);
+    background-color: inherit;
     outline: none;
     border: none;
-    color: #ffffff;
-    border-radius: 0.5rem;
+    width: 25px;
+    height: 25px;
+    border-radius: 0.3rem;
+    
 }
 #btn-excluir:hover{
-    background-color: rgb(169, 5, 5);
+    color: rgb(160, 0, 0);
+    transform: scale(115%);
+} 
+/* =================== */
+#btc-trash{
+    color: var(--black2);
+    background-color: inherit;
+    outline: none;
+    border: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 0.3rem;
 }
+#op:hover{
+    color: rgb(160, 0, 0);
+    transform: scale(115%);
+} 
+/* ========================================================================== */
+
+/*footer*/
+footer{
+    font-size: 15px;
+    height: 40px;
+}
+
+/* ========================================================================== */
+
+
 /* troca de tema */
 #sun{
-    margin-right: 0.6rem;
+    margin-right: 5px;
+}
+#mon{
+    margin-left: 5px;
 }
 .toggle-switch {
-    margin-top: 0.2rem;
-    margin-right: 72rem;
-    height: 24px;
-    position: absolute;
-    margin-left: 1rem;
-    width: 48px;
-    
+    display: flex;
+    align-items: center;
+    height: 21.09px;
+    width: 68px; 
   }
   
   .toggle-switch-checkbox {
@@ -169,28 +408,29 @@ input:focus ~ .underline::after {
     display: block;
     height: 100%;
     width: 200%;
-    margin-left: -100%;
     transition: margin 0.3s ease-in 0s;
     border-radius: 1rem;
-    background-color: #77777773;
+    background-color: var(--white2);
     position: relative;
     z-index: 1;
   }
   
   .toggle-switch-switch {
-    background-color: #ffffffb1;
-    border: 0px solid #bbbbbb;
-    border-radius: 24px;
+    background-color: var(--white);
+    border-radius: 21.09px;
     display: block;
-    height: 16px;
-    width: 16px;
+    height: 14px;
+    width: 14px;
     left: 4px;
     position: absolute;
-    top: 4px;
+    top: 3.59px;
     transition: left 0.3s ease-in 0s;
     z-index: 2;
   }
-  
+.toggle-switch-switch:hover{
+    transform: scale(120%);
+
+}
   .toggle-switch-checkbox:checked + .toggle-switch-label .toggle-switch-inner {
     margin-left: 0;
   }
@@ -198,39 +438,136 @@ input:focus ~ .underline::after {
   .toggle-switch-checkbox:checked + .toggle-switch-label .toggle-switch-switch {
     left: calc(100% - 20px);
   }
-/*Modo escuro*/ 
+
+/* ========================================================================== */
+
+
+/* Estilos do pop-up */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #adadad31;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    backdrop-filter: blur(3px);
+}
+.popup-content {
+    background-color: #dfdfddcc;
+    border-radius: 16px;
+    padding: 2rem;
+    max-width: 400px;
+    text-align: center;
+}
+.popup h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+.popup input {
+    width: 100%;
+    padding: 10px;
+    background-color: #d1d1cfb6;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+}
+
+.popup button {
+    margin-top: 1rem;
+    border-radius: 6px;
+    padding: 5px;
+    background-color: #d1d1cfb6;
+}
+#edit-save{
+    margin-right: 1rem;
+}
+.popup button:hover{
+    transform: scale(120%);
+}
+  
+
+/* ========================================================================== */
+
+
+/* Modo escuro*/ 
 .dark-mode {
-    background: #1b1b1b;
-    color: #f5f5f5;
-}
-.dark-mode h1{
-    color: #8c8b8b;
-}
-.dark-mode .content--boby {
-    color: #8c8b8b;
-
-}
-.dark-mode #addTask:hover{
-    background-color: #1f3f68;
-    margin-left: 20.7rem;
-    margin-top: -0.7rem;
-    width: 60px;
-    height: 60px;
-}
-.dark-mode #task-list {
-    background: #333333;
+    background: var(--black2);
+    color: var(--white2);
 }
 
-.dark-mode .input-field .underline::before {
-    background: rgba(255, 255, 255, 0.2);
+.dark-mode #btn-new-task{
+    background-color: var(--black);
+}
+.field input{
+    color: var(--whiter2);
+}
+.dark-mode .content--boby--add-item{
+    background-color: var(--black);
+}
+.dark-mode #search-input{
+    background-color: var(--black2);
+    color: var(--white);
+}
+.dark-mode #search-input::placeholder {
+    color: var(--black2);
 }
 
-.dark-mode .input .underline::after {
-    background: linear-gradient(45deg,#45a3e3,#1f3f68);
+.dark-mode #erase-button{
+    background-color: var(--black2);
+    color: var(--white);
 }
+.dark-mode #to-do-list li{
+    background-color: var(--black2);
+    color: var(--white2);
+}
+.dark-mode #ctdl::-webkit-scrollbar-thumb {
+    background-color: #a0a0a033; 
+}
+.dark-mode #ctdl::-webkit-scrollbar-thumb:hover{
+    background-color: var(--black3); 
+}
+
+
+.dark-mode .checkbox{
+    border: 2px solid var(--white2);
+}
+.dark-mode #btn-edit{
+    color: var(--white2);
+}
+
+.dark-mode #btn-excluir{
+    color: var(--white2);
+}
+    
+.dark-mode #btc-trash{
+    color: var(--white2);
+}
+.dark-mode #ctl{
+    background-color: #05050533;
+}
+
 .dark-mode .toggle-switch-inner{
-    background-color: #333333;
+    background-color: var(--black);
 }
 .dark-mode .toggle-switch-switch {
-    background-color: #6a6a6a;
+    background-color: var(--black3);
+}
+/* =================== */
+.dark-mode .popup {
+    background-color: #33333323;
+}
+.dark-mode .popup-content {
+    background-color: var(--black);
+}
+
+.dark-mode .popup input {
+    background-color: #d1d1cf51;
+}
+
+.dark-mode .popup button {
+    background-color: #d1d1cf51;
+    color: #c6c4c4;
 }
