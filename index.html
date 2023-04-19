@@ -20,7 +20,7 @@
       <input type="checkbox" id="toggle" class="toggle-switch-checkbox">
       <label for="toggle" class="toggle-switch-label">
         <span class="toggle-switch-inner"></span>
-        <span class="toggle-switch-switch"></span>
+        <span class="toggle-switch-switch" title="Clique para trocar de tema"></span>
       </label>
       <svg id="mon" xmlns="http://www.w3.org/2000/svg" width="13" height="16" fill="currentColor" class="bi bi-moon" viewBox="0 0 16 16">
         <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278zM4.858 1.311A7.269 7.269 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.316 7.316 0 0 0 5.205-2.162c-.337.042-.68.063-1.029.063-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286z"/>
@@ -58,26 +58,26 @@
         <div id="search">
           <!-- Search -->
           <form id="search-form">
-            <input type="text" id="search-input" placeholder="Search">
-            <button id="erase-button" onclick="searchItems()">
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-              </svg>
-            </button>
+            <input type="text" title="Clique para buscar task" id="search-input" placeholder="Search">
           </form>
         </div>
-
-
+        
         <div id="cbi">
 
           <div id="ctl">  
             <div id="filter">
-              <div><option value="all" id="click-all" onclick="showValues()">all
-              </option></div>
-              <div><option value="done" id="click-done" onclick="showValuesDone()">done   
-              </option></div>
-              <div><option value="trash" id="click-trash" onclick="showValuesTrash()">trash
-              </option></div>
+              <div id="op-all">
+                <option value="all" id="click-all" onclick="showValues()" title="Todas as Task">all</option>
+                <span class="badge" id="all-badge">0</span>
+              </div>
+              <div id="op-done">
+                <option value="done" id="click-done" onclick="showValuesDone()" title="Task concluídas">done</option>
+                <span class="badge" id="done-badge">0</span>
+              </div>
+              <div id="op-badge">
+                <option value="trash" id="click-trash" onclick="showValuesTrash()" title="lixeira">trash</option>
+                <span class="badge" id="trash-badge">0</span>
+              </div>
             </div>  
           </div>
 
@@ -92,8 +92,8 @@
             <div class="popup-content">
               <h3>Editar Task</h3>
               <input type="text" id="edit-input" />
-              <button id="edit-save">Salvar</button>
-              <button id="edit-cancel">Close</button>
+              <button title="Salvar edição" id="edit-save">Salvar</button>
+              <button title="Cancelar edição" id="edit-cancel">Close</button>
             </div>
           </div>
 
@@ -104,10 +104,9 @@
 
   <footer class="py-3 my-4">
     <ul id="link" class="nav justify-content-center border-bottom pb-3 mb-3">
-      <li class="nav-item"><a href="https://github.com/JhonHeldher" class="nav-link px-2 text-muted"><i class="fa fa-github" aria-hidden="true"></i>  GitHub</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
-      <li class="nav-item"><a href="https://github.com/JhonHeldher/To-Do-List" class="nav-link px-2 text-muted"><i class="fa fa-github" aria-hidden="true"></i>  About</a></li>
+      <li class="nav-item" title="Pag GitHub"><a href="https://github.com/JhonHeldher" class="nav-link px-2 text-muted"><i class="fa fa-github" aria-hidden="true"></i>  GitHub</a></li>
+      <li class="nav-item" title="Pag do projeto no GitHub"><a href="https://github.com/JhonHeldher/To-Do-List" class="nav-link px-2 text-muted">Features</a></li>
+      <li class="nav-item" title="Pag sobre projeto no GitHub"><a href="https://github.com/JhonHeldher/To-Do-List" class="nav-link px-2 text-muted"><i class="fa fa-github" aria-hidden="true"></i>  About</a></li>
     </ul>
     <p id="comp" class="text-center text-muted">&copy; 2023 Company, Inc</p>
   </footer>
