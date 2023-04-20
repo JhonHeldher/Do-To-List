@@ -3,7 +3,8 @@ const localStorageKey = 'to-do-list-gn'
 const localStorageKeyTrash = 'to-do-list-Th'
 const toggleSwitch = document.querySelector('.toggle-switch input[type="checkbox"]');
 const body = document.querySelector('body');
-
+/* ========================================================================== */
+/* Troca de thema */
 toggleSwitch.addEventListener('change', function() {
     if (this.checked) {
         body.classList.add('dark-mode');
@@ -11,14 +12,20 @@ toggleSwitch.addEventListener('change', function() {
         body.classList.remove('dark-mode');
     }    
 });
+
 /* ========================================================================== */
+/* Verifica se tem task com mesmo valor */
+
 function validateExistsTask(){
 	let values =  JSON.parse(localStorage.getItem(localStorageKey) || "[]")
 	let inputValue = document.getElementById('input-new-task').value
 	let exists = values.find(x => x.name == inputValue)
 	return !exists ? false : true
 }
+
 /* ========================================================================== */
+/* Adiciona a task  */
+
 function newTask() {
   let input = document.getElementById('input-new-task');
 
@@ -37,13 +44,15 @@ function newTask() {
     
     input.value = '';
     showValues();
-  } 
-  
+  }   
 }
+
 /* ========================================================================== */
+/* Busca  task */
+
 function searchItems() {
-  let searchTerm = document.getElementById('search-input').value; // Obtém o valor do termo de pesquisa
-  let values = JSON.parse(localStorage.getItem(localStorageKey) || "[]"); // Obtém os itens do localStorage
+  let searchTerm = document.getElementById('search-input').value; // Obtem o valor do termo de pesquisa
+  let values = JSON.parse(localStorage.getItem(localStorageKey) || "[]"); // Obtem os itens do localStorage
   let list = document.getElementById('to-do-list');
   
   // Filtra os itens com base no termo de pesquisa
@@ -60,12 +69,13 @@ function searchItems() {
   
   // Se não houver resultados, exibe uma mensagem de aviso
   if (filteredValues.length === 0) {
-    list.innerHTML = '<li>Nenhum resultado encontrado</li>';
+    list.innerHTML = '<li>No results found.</li>';
   }
 }
 document.getElementById('search-input').addEventListener('input', searchItems);
 
 /* ========================================================================== */
+/* Mostra as task adicionadas */
 
 function showValues() {
   let values = JSON.parse(localStorage.getItem(localStorageKey) || "[]");
@@ -118,39 +128,9 @@ function showValues() {
   doneBadge.textContent = count; // Atualiza o valor do badge done-badge
 }
 
-
-
 /* ========================================================================== */
+/* Mostra as task concluídas */
 
-function showValuesTrash() {
-  let valuesTrash = JSON.parse(localStorage.getItem(localStorageKeyTrash) || "[]");
-  let list = document.getElementById('to-do-list');
-  let trashBadge = document.getElementById('trash-badge'); // Obter o elemento do badge
-  
-  // Remover classe de cor dos elementos
-  document.getElementById('click-all').classList.remove('option-clicked');
-  document.getElementById('click-done').classList.remove('option-clicked');
-
-  // Adicionar classe de cor ao elemento desejado
-  document.getElementById('click-trash').classList.add('option-clicked');
-
-
-  list.innerHTML = '';
-  for (let i = 0; i < valuesTrash.length; i++) {
-    list.innerHTML += `<li>${valuesTrash[i]['name']}
-      <button id="btc-trash" title="Excluir definitivamente  a Task" onclick='removeItemDef("${valuesTrash[i]['name']}")'>
-        <svg id="op" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-          <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
-          <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
-        </svg>
-      </button></li>`;
-  }
-  trashBadge.textContent = valuesTrash.length; // Atualizar o valor do badge com a contagem de itens na lixeira
-}
-function pushTrash() {
-  showValuesTrash();
-}
-/* ========================================================================== */
 function showValuesDone() {
   let values = JSON.parse(localStorage.getItem(localStorageKey) || "[]");
   let list = document.getElementById('to-do-list');
@@ -180,6 +160,58 @@ function showValuesDone() {
 }
 
 /* ========================================================================== */
+/* Mostra os itens enviados para lixeira */
+
+function showValuesTrash() {
+  let valuesTrash = JSON.parse(localStorage.getItem(localStorageKeyTrash) || "[]");
+  let list = document.getElementById('to-do-list');
+  let trashBadge = document.getElementById('trash-badge'); // Obter o elemento do badge
+  
+  // Remover classe de cor dos elementos
+  document.getElementById('click-all').classList.remove('option-clicked');
+  document.getElementById('click-done').classList.remove('option-clicked');
+
+  // Adicionar classe de cor ao elemento desejado
+  document.getElementById('click-trash').classList.add('option-clicked');
+
+
+  list.innerHTML = '';
+  for (let i = 0; i < valuesTrash.length; i++) {
+    list.innerHTML += `<li>${valuesTrash[i]['name']}
+      <button id="btc-trash" title="Excluir definitivamente  a Task" onclick='removeItemDef("${valuesTrash[i]['name']}")'>
+        <svg id="op" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+          <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
+          <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
+        </svg>
+      </button></li>`;
+  }
+  trashBadge.textContent = valuesTrash.length; // Atualizar o valor do badge com a contagem de itens na lixeira
+}
+function pushTrash() {
+  showValuesTrash();
+}
+
+// ==========================================================================================================================================
+// check itens
+
+function updateCheckbox(data, checked) {
+  let values = JSON.parse(localStorage.getItem(localStorageKey) || "[]");
+  let index = values.findIndex(x => x.name == data);
+  values[index]['checked'] = checked;
+  localStorage.setItem(localStorageKey, JSON.stringify(values));
+  showValues();
+}
+function checkItem(data, checked){
+	let values =  JSON.parse(localStorage.getItem(localStorageKey) || "[]")
+	let index = values.findIndex(x => x.name == data)
+  values[index]['checked'] = checked;
+  values[index]['checked'] = checked; // Atualiza o estado do checkbox no objeto de tarefa
+  localStorage.setItem(localStorageKey, JSON.stringify(values));
+}
+
+// ==========================================================================================================================================
+// edit itens
+
 function editItem(data) {
   let values = JSON.parse(localStorage.getItem(localStorageKey) || '[]');
   let index = values.findIndex((x) => x.name == data);
@@ -211,6 +243,8 @@ function editItem(data) {
 }
 
 // ==========================================================================================================================================
+// Envia para a lixeira
+
 function removeItem(data) {
   let values = JSON.parse(localStorage.getItem(localStorageKey) || "[]");
   let index = values.findIndex(x => x.name == data);
@@ -229,6 +263,7 @@ function removeItem(data) {
 }
 
 // ==========================================================================================================================================
+// Remove definitivamente o item
 
 function removeItemDef(data) {
   let valuesTrash = JSON.parse(localStorage.getItem(localStorageKeyTrash) || "[]");
@@ -238,21 +273,7 @@ function removeItemDef(data) {
   
   showValuesTrash();
 }
-// ==========================================================================================================================================
-function updateCheckbox(data, checked) {
-  let values = JSON.parse(localStorage.getItem(localStorageKey) || "[]");
-  let index = values.findIndex(x => x.name == data);
-  values[index]['checked'] = checked;
-  localStorage.setItem(localStorageKey, JSON.stringify(values));
-  showValues();
-}
-function checkItem(data, checked){
-	let values =  JSON.parse(localStorage.getItem(localStorageKey) || "[]")
-	let index = values.findIndex(x => x.name == data)
-  values[index]['checked'] = checked;
-  values[index]['checked'] = checked; // Atualiza o estado do checkbox no objeto de tarefa
-  localStorage.setItem(localStorageKey, JSON.stringify(values));
-}
+
 // ==========================================================================================================================================
 
 showValuesTrash()
