@@ -22,7 +22,7 @@ Página Web da To Do List no modo light.
 
 <br>
 
-![Design preview for the To-Do-List](./Preview/to-do-mobile.png)  _____________  ![Design preview for the To-Do-List](./Preview/to-do-dark-edit-mobile.png)
+![Design preview for the To-Do-List](./Preview/to-do-mobile.png)    ![Design preview for the To-Do-List](./Preview/to-do-dark-edit-mobile.png)
 O projeto também foi desenvolvido com foco na responsividade, garantindo uma experiência otimizada tanto em dispositivos móveis quanto em desktops.
 
 - ## Tecnologias Utilizadas
